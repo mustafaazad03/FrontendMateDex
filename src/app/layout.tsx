@@ -6,8 +6,8 @@ import '@/styles/tailwind.css'
 
 export const metadata: Metadata = {
   title: {
-    template: 'MateDex',
-    default: 'MateDex is used to facilitate the meaningful connections between industry experts and their audiences through personalized interactions',
+    template: '%s - Studio',
+    default: 'Studio - Award winning developer studio based in Denmark',
   },
 }
 
