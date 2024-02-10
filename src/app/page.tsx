@@ -20,6 +20,7 @@ import logoPhobiaLight from '@/images/clients/phobia/logo-light.svg'
 import logoUnseal from '@/images/clients/unseal/logo-light.svg'
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+import axios from 'axios';
 
 const clients = [
   ['Phobia', logoPhobiaLight],
@@ -179,6 +180,25 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   let caseStudies = (await loadCaseStudies()).slice(0, 3)
+
+  // Base Url
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const authToken = process.env.NEXT_PUBLIC_AUTH_TOKEN;
+
+  // Fetching data from API
+  // having headers for authorization X-API-KEY
+  // generic fuction to fetch data from API
+  const fetchData = async (url: string) => {
+    const response = await axios.get(`${baseUrl}${url}`, {
+      headers: {
+        'X-API-KEY': authToken,
+      },
+    });
+    return response.data;
+  }
+
+  const hero = await fetchData('/hero');
+  console.log(hero);
 
   return (
     <>
