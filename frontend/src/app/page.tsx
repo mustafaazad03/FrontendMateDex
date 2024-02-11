@@ -62,22 +62,20 @@ function Clients() {
   )
 }
 
-function CaseStudies({
+async function CaseStudies({
   caseStudies,
 }: {
   caseStudies: Array<MDXEntry<CaseStudy>>
 }) {
+  const caseStudy = await fetchData('/features')
+  console.log(caseStudy.data[0])
   return (
     <>
       <SectionIntro
         title="Harnessing technology for a brighter future"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
-        <p>
-          We believe technology is the answer to the world’s greatest
-          challenges. It’s also the cause, so we find ourselves in bit of a
-          catch 22 situation.
-        </p>
+        <p>{caseStudy.data[0].desc}</p>
       </SectionIntro>
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -189,7 +187,8 @@ export default async function Home() {
 
   const hero = await fetchData('/hero')
   console.log(hero.data[0].title)
-
+  const testimonial = await fetchData('/testimonials')
+  console.log(testimonial.data[0].quote)
   return (
     <>
       <Container className="mt-24 sm:mt-32 md:mt-56">
@@ -209,9 +208,7 @@ export default async function Home() {
         className="mt-24 sm:mt-32 lg:mt-40"
         client={{ name: 'Phobia', logo: logoPhobiaDark }}
       >
-        The team at Studio went above and beyond with our onboarding, even
-        finding a way to access the user’s microphone without triggering one of
-        those annoying permission dialogs.
+        {testimonial.data[0].quote}
       </Testimonial>
 
       <Services />
