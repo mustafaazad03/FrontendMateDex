@@ -69,7 +69,7 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          <Logomark
+          {/* <Logomark
             className="h-8 sm:hidden"
             invert={invert}
             filled={logoHovered}
@@ -78,11 +78,12 @@ function Header({
             className="hidden h-8 sm:block"
             invert={invert}
             filled={logoHovered}
-          />
+          /> */}
+          MateDex
         </Link>
         <div className="flex items-center gap-x-8">
-          <Button href="/contact" invert={invert}>
-            Contact us
+          <Button href="http://localhost:3001" invert={invert}>
+            Launch App
           </Button>
           <button
             ref={toggleRef}
@@ -195,8 +196,8 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
             expanded={expanded}
             onToggle={() => {
               setExpanded((expanded) => !expanded)
-              window.setTimeout(
-                () => closeRef.current?.focus({ preventScroll: true }),
+              window.setTimeout(() =>
+                closeRef.current?.focus({ preventScroll: true }),
               )
             }}
           />
@@ -221,8 +222,8 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                 expanded={expanded}
                 onToggle={() => {
                   setExpanded((expanded) => !expanded)
-                  window.setTimeout(
-                    () => openRef.current?.focus({ preventScroll: true }),
+                  window.setTimeout(() =>
+                    openRef.current?.focus({ preventScroll: true }),
                   )
                 }}
               />
